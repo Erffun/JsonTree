@@ -1,0 +1,136 @@
+﻿<html>
+<head>
+    <title>Erff Json TreeView</title>
+    <link href="TreeStyle.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: sans-serif;
+            color: #444;
+            background: #eee;
+            margin: 40px 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .pageContainer {
+            width: 800px;
+            margin: 0 auto;
+            border: 1px solid #bbb;
+            background: #fff;
+            padding: 45px 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pageContainer">
+        <h1>
+            Erff Json Tree with lazy support <small>(ver. 0.2)</small>
+        </h1>
+        <p>Erff json tree is a small jquery plugin<small>(minified version is only 3.3kb)</small> that can create a treeview from json data with lazy loading support</p>
+        <p>Json model must be in following pattern:</p>
+        <ul>
+            <li>
+                <b>ItemId </b> <small>selected item id</small>
+            </li>
+            <li>
+                <b>Title</b>
+            </li>
+            <li>
+                <b>Items </b><small> sub items</small>
+            </li>
+            <li><b>Selected</b></li>
+            <li>
+                <b>HasSubItem</b> <small>only use for lazy loading</small>
+            </li>
+        </ul>
+        <hr />
+        <div id="simpleTree">
+            <h3>Simple Tree</h3>
+            <div id="simpleTreeContainer"></div>
+            <button id="simpleTreeBtn">Get value</button>
+        </div>
+
+        <div id="checkboxTree">
+            <h3>Simple Tree with checkbox</h3>
+            <div id="checkboxTreeContainer"></div>
+            <button id="checkboxTreeBtn">Get value</button>
+        </div>
+
+        <div id="lazyTree">
+            <h3>Lazy loading Tree</h3>
+            <div id="lazyTreeContainer"></div>
+            <button id="lazyTreeBtn">Get value</button>
+        </div>
+
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="jsonTree.min.js"></script>
+    <script>
+        var jsonData = [{
+            ItemId: 1, Title: "Parent",
+            Items: [
+                    { ItemId: 2, Title: "Inner 1" },
+                    {
+                        ItemId: 3, Title: "Inner2",
+                        Items: [{ ItemId: 31, Title: "Inner 2 1" },
+                                { ItemId: 32, Title: "Inner 2 2" },
+                                { ItemId: 33, Title: "Inner 2 3" }]
+                    },
+                    { ItemId: 4, Title: "Inner 3" },
+                    {
+                        ItemId: 5, Title: "Inner 4",
+                        Items: [{ ItemId: 51, Title: "Inner 4 1" },
+                                  { ItemId: 52, Title: "Inner 4 2" },
+                                  { ItemId: 53, Title: "Inner 4 3" }]
+                    }
+
+            ]
+        }];
+        var lazyData = [
+                        { ItemId: 1, Title: "First parent", HasSubItem: true },
+                        { ItemId: 2, Title: "Secound parent" },
+                        { ItemId: 3, Title: "Third parent", HasSubItem: true }
+        ];
+
+        $('button#simpleTreeBtn').click(function () {
+            alert( "selected item: "+ $('#simpleTreeContainer').val());
+        });
+
+        $('button#checkboxTreeBtn').click(function () {
+            alert("selected item: " + $('#checkboxTreeContainer').val());
+        });
+
+        $('button#lazyTreeBtn').click(function () {
+            alert("selected item: " + $('#lazyTreeContainer').val());
+        });
+
+        $(document).ready(function () {
+            $('#simpleTreeContainer').jsonTree(jsonData, {
+                mandatorySelect: true,
+                selectedIdElementName: 'simpleTreeContainer',
+                selectedItemId: 'simpleTreeContainer'
+            });
+            $('#checkboxTreeContainer').jsonTree(jsonData, {
+                selectedIdElementName: 'checkboxTreeContainer',
+                selectedItemId: 'checkboxTreeContainer',
+                showCheckBox: true,
+                checkBoxText: "with sub items",
+                checkBoxElementName: 'checkboxSelectedNode',
+                checkBoxElementId: 'checkboxSelectedNode'
+            });
+
+            $('#lazyTreeContainer').jsonTree(lazyData, {
+                mandatorySelect: true,
+                selectedIdElementName: 'lazyTreeContainer',
+                selectedItemId: 'lazyTreeContainer',
+                lazyLoad: true,
+                lazyRequestUrl: 'subitems.js',
+                lazySendParameterName: 'id',
+
+            });
+        });
+    </script>
+</body>
+</html>

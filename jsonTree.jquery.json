@@ -6,11 +6,11 @@
 	"json",
 	"tree",
 	"treeview",
-	"tree view",
 	"lazy",
-	"lazy loading"
+	"lazyloading",
+	"ondemand"
 	],
-	"version": "1.0",
+	"version": "1.0.0",
 	"author": {
 		"name": "Erffun Havaasi"
 	},

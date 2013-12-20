@@ -1,0 +1,34 @@
+﻿{
+	"name": "jsonTree",
+	"title": "Erff Json Tree",
+	"description": "Erff json tree is a small jquery plugin (minified version is only 3.3kb) that can create a treeview from json data with lazy loading support",
+	"keywords": [
+	"json",
+	"tree",
+	"treeview",
+	"tree view",
+	"lazy",
+	"lazy loading"
+	],
+	"version": "1.0",
+	"author": {
+		"name": "Erffun Havaasi"
+	},
+"maintainers": [
+{
+	"name": "Erffun Havaasi",
+	"email": "erffun@gmail.com"
+}
+],
+"licenses": [
+{
+	"type": "GPL-v3",
+	"url": "https://github.com/Erffun/JsonTree/blob/master/LICENSE"
+}
+],
+"bugs": "https://github.com/Erffun/JsonTree/issues",
+"homepage": "https://github.com/Erffun/JsonTree",
+"dependencies": {
+	"jquery": ">=1.5"
+}
+}

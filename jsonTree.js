@@ -70,9 +70,6 @@
                                 url: setting.lazyRequestUrl,
                                 data: ajaxSendData,
                                 dataType: 'json',
-                                error: function (data) {
-                                    alert(data);
-                                }
                             }).done(function (data) {
                                 if (data) {
                                     var $ajaxInnerUl = $("<ul></ul>");
@@ -80,6 +77,8 @@
                                     $li.append($ajaxInnerUl);
                                     $icon.unbind("click");
                                 }
+                            }).fail(function(data){
+                            	alert(data);
                             });
                         });
                     }
@@ -88,7 +87,7 @@
 
                     if (jsonData.Items && jsonData.Items.length) {
                         var $innerUl = $("<ul></ul>");
-                        $(jsonData.Items).each(function (index) {
+                        $(jsonData.Items).each(function () {
                             createTree(this, $innerUl);
                         });
                         $li.append($innerUl);

@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Erffun's small codes : JSonTree" />
+    <link rel="stylesheet" href="contents/TreeStyle.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="contents/stylesheet.css" />
+
+    <title>JsonTree - Erffun's small codes</title>
+</head>
+
+<body>
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+            <a id="forkme_banner" href="https://github.com/Erffun/JsonTree">View on GitHub</a>
+
+            <h1 id="project_title">Erffun's small codes</h1>
+            <h2 id="project_tagline">Is there anybody <b>OUT THERE?</b></h2>
+
+        </header>
+    </div>
+    <div id="main_content_wrap" class="outer">
+        <div class="mainContainer">
+            <section id="main_content" class="inner">
+                <h3>
+                    Erff Json Tree with lazy support <i><small>(ver. 1)</small></i>
+                </h3>
+                <p>
+                    Erff jsonTree is a small jquery plugin (minified version is only 3.13kb) for create a treeview from json data and support lazy loading.
+                </p>
+
+                <div>
+                    <div id="simpleTree">
+                        <h3>Simple Tree</h3>
+<pre><code>Code:
+$('#simpleTreeContainer').jsonTree(jsonData, {
+    mandatorySelect: true,
+    selectedIdElementName: 'simpleTreeContainer',
+    selectedItemId: 'simpleTreeContainer'
+});</code></pre>
+                        <br />
+                        <div id="simpleTreeContainer"></div>
+                        <button id="simpleTreeBtn">Get value</button>
+                    </div>
+
+                    <hr />
+
+                    <div id="checkboxTree">
+                        <h3>Simple Tree with checkbox</h3>
+<pre><code>Code:
+$('#checkboxTreeContainer').jsonTree(jsonData, {
+    selectedIdElementName: 'checkboxTreeContainer',
+    selectedItemId: 'checkboxTreeContainer',
+    showCheckBox: true,
+    checkBoxText: "with sub items",
+    checkBoxElementName: 'checkboxSelectedNode',
+    checkBoxElementId: 'checkboxSelectedNode',
+    selectedItemIsChecked: true
+});
+</code></pre>
+                        <br />
+                        <div id="checkboxTreeContainer"></div>
+                        <button id="checkboxTreeBtn">Get value</button>
+                    </div>
+                    <hr />
+                    <div id="lazyTree">
+                        <h3>Lazy loading Tree</h3>
+<pre><code>Code:
+$('#lazyTreeContainer').jsonTree(lazyData, {
+    mandatorySelect: true,
+    selectedIdElementName: 'lazyTreeContainer',
+    selectedItemId: 'lazyTreeContainer',
+    lazyLoad: true,
+    lazyRequestUrl: 'subitems.js',
+    lazySendParameterName: 'id',
+});
+</code></pre>
+                        <br />
+                        <div id="lazyTreeContainer"></div>
+                        <button id="lazyTreeBtn">Get value</button>
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="pageContainer">
+                    <h4>
+                        JsonTree options:
+                    </h4>
+                    <section class="options">
+
+                        <article>
+                            <h5><b>showCheckBox</b> <small> : boolean</small></h5>
+                            <p>
+                                When using showCheckbox, checkboxes will appear in side of each tree item.
+                            </p>
+                            default value is : <b>false</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>checkBoxText</b><small> : string</small></h5>
+                            <p>
+                                The text of checkboxes,
+                                This item can be used when "showCheckBox" is true.
+                            </p>
+                            default value is : <b>Apply Sub Items</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>checkBoxElementName</b> <small> : string</small></h5>
+                            <p>
+                                The 'name' attribute of selected item's checkbox for send check result to form action.
+                            </p>
+                            default value is : <b>chkApplySub</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>checkBoxElementId</b> <small> : string</small></h5>
+                            <p>
+                                The 'id' attribute of selected item's checkbox.
+                            </p>
+                            default value is : <b>chkApplySub</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>selectedIdElementName </b> <small> : string</small></h5>
+                            <p>
+                                The 'name' attribute of selected item. Use for send selected value to form action.
+                            </p>
+                            default value is : <b>hdnSelected</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>selectedItemId</b> <small> : string</small></h5>
+                            <p>
+                                The 'id' attribute of selected item.
+                            </p>
+                            default value is : <b>0</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>selectedItemIsChecked </b> <small> : boolean</small></h5>
+                            <p>
+                                When this property was true, selected item's checkbox will checked.
+                            </p>
+                            default value is : <b>false</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>mandatorySelect</b> <small> : boolean</small></h5>
+                            <p>
+                                When Using mandatory, user force to select an item. first item will selected,by default.
+                            </p>
+                            default value is : <b>false</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>lazyLoad</b> <small> : boolean</small></h5>
+                            <p>
+                                with this option, you can load sub items ondemand (when click on expand icon)
+                            </p>
+                            default value is : <b>false</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>lazyRequestUrl</b> <small> : string</small></h5>
+                            <p>
+                                The url for fetching json data.
+                            </p>
+                            default value is : <b>(empty)</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>lazySendParameterName</b> <small> : string</small></h5>
+                            <p>
+                                The name of parameter for send selected item's id with this name to lazyRequestUrl.
+                                <blockquote>
+                                    for example: if lazyRequestUrl = 'http://yourdomain.com/treeItems.json' and lazySendParameterName = 'selectedId' and selected item id = 89
+                                    generated request will be : http://yourdomain.com/treeItems.json?selectedId=89
+                                </blockquote>
+                            </p>
+                            default value is : <b>id</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>lazyLoadMethod</b> <small> : string</small></h5>
+                            <p>
+                                Action method of sending lazy loading request
+                            </p>
+                            default value is : <b>GET</b>
+                        </article>
+                        <hr />
+                        <article>
+                            <h5><b>onSelect</b> <small> : function</small></h5>
+                            <p>
+                                When using this option, you can pass a function for invoke after select each tree item.
+                            </p>
+                            default value is : <b>function (selectedId, selectedLi, $clickedLi) { }</b>
+                        </article>
+
+                    </section>
+
+                    <h4>
+                        JsonTree options:
+                    </h4>
+                    <section class="options">
+                        <p>Json model must be in following pattern:</p>
+
+                        <article>
+                            <h5><b>ItemId</b> <small> : string or integer</small></h5>
+                            <p>
+                                Value of item
+                            </p>
+
+                        </article>
+                        <article>
+                            <h5><b>Title</b> <small> : string</small></h5>
+                            <p>
+                                Shown as Title of item
+                            </p>
+
+                        </article>
+                        <article>
+                            <h5><b>Selected</b> <small> : bool</small></h5>
+                            <p>
+                                When this property was true, this item will selected after loading model. only one item can be true,
+                                if you use more than one item, the last item will selected
+                            </p>
+
+                        </article>
+                        <article>
+                            <h5><b>HasSubItem</b> <small> : </small></h5>
+                            <p>
+                                If using lazyloading, this item can determine that this item has subItems or not
+                            </p>
+
+                        </article>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div id="footer_wrap" class="outer">
+        <footer class="inner"></footer>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="../Source/jsonTree.min.js"></script>
+    <script>
+        var jsonData = [{
+            ItemId: 1, Title: "Parent",
+            Items: [
+                    { ItemId: 2, Title: "Inner 1" },
+                    {
+                        ItemId: 3, Title: "Inner2",
+                        Items: [{ ItemId: 31, Title: "Inner 2 1" },
+                                { ItemId: 32, Title: "Inner 2 2" },
+                                { ItemId: 33, Title: "Inner 2 3" }]
+                    },
+                    { ItemId: 4, Title: "Inner 3" },
+                    {
+                        ItemId: 5, Title: "Inner 4",
+                        Items: [{ ItemId: 51, Title: "Inner 4 1" },
+                                  { ItemId: 52, Title: "Inner 4 2" },
+                                  { ItemId: 53, Title: "Inner 4 3" }]
+                    }
+
+            ]
+        }];
+        var lazyData = [
+                        { ItemId: 1, Title: "First parent", HasSubItem: true },
+                        { ItemId: 2, Title: "Secound parent" },
+                        { ItemId: 3, Title: "Third parent", HasSubItem: true }
+        ];
+
+        $(document).ready(function () {
+	        $('button#simpleTreeBtn').click(function () {
+	            alert("selected item: " + $('#simpleTreeContainer').val());
+	        });
+
+	        $('button#checkboxTreeBtn').click(function () {
+	            alert("selected item: " + $('#checkboxTreeContainer').val());
+	        });
+
+	        $('button#lazyTreeBtn').click(function () {
+	            alert("selected item: " + $('#lazyTreeContainer').val());
+	        });
+            $('#simpleTreeContainer').jsonTree(jsonData, {
+                mandatorySelect: true,
+                selectedIdElementName: 'simpleTreeContainer',
+                selectedItemId: 'simpleTreeContainer'
+            });
+            $('#checkboxTreeContainer').jsonTree(jsonData, {
+                selectedIdElementName: 'checkboxTreeContainer',
+                selectedItemId: 'checkboxTreeContainer',
+                showCheckBox: true,
+                checkBoxText: "with sub items",
+                checkBoxElementName: 'checkboxSelectedNode',
+                checkBoxElementId: 'checkboxSelectedNode',
+                selectedItemIsChecked: true
+            });
+
+            $('#lazyTreeContainer').jsonTree(lazyData, {
+                mandatorySelect: true,
+                selectedIdElementName: 'lazyTreeContainer',
+                selectedItemId: 'lazyTreeContainer',
+                lazyLoad: true,
+                lazyRequestUrl: 'javascripts/subitems.js',
+                lazySendParameterName: 'id',
+
+            });
+        });
+    </script>
+</body>
+</html>
